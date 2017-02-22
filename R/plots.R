@@ -97,9 +97,11 @@ plotMA.DESeqResults <- function(object, alpha, main="", xlab="mean of normalized
                isDE = ifelse(is.na(object$padj), FALSE, object$padj < alpha))
   }
     if (missing(ylim)) {
-      plotMA(df, main=main, xlab=xlab, ...)
+      # plotMA(df, main=main, xlab=xlab, ...)
+      warning("Sorry plotting is not yet supported by Renjin. plotMA() not executed.")
     } else {
-       plotMA(df, main=main, xlab=xlab, ylim=ylim, ...)
+      # plotMA(df, main=main, xlab=xlab, ylim=ylim, ...)
+      warning("Sorry plotting is not yet supported by Renjin. plotMA() not executed.")
     }  
 }
 
@@ -148,7 +150,6 @@ plotMA.DESeqResults <- function(object, alpha, main="", xlab="mean of normalized
 #' res <- results(dds)
 #' plotMA(res)
 #'
-#' @importFrom geneplotter plotMA
 #' @importFrom ggplot2 ggplot geom_point xlab ylab coord_fixed aes_string
 #'
 #' @export
