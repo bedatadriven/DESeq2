@@ -150,7 +150,6 @@ plotMA.DESeqResults <- function(object, alpha, main="", xlab="mean of normalized
 #' res <- results(dds)
 #' plotMA(res)
 #'
-#' @importFrom ggplot2 ggplot geom_point xlab ylab coord_fixed aes_string
 #'
 #' @export
 setMethod("plotMA", signature(object="DESeqDataSet"), plotMA.DESeqDataSet)
@@ -195,10 +194,12 @@ plotPCA.DESeqTransform = function(object, intgroup="condition", ntop=500, return
     return(d)
   }
   
-  ggplot(data=d, aes_string(x="PC1", y="PC2", color="group")) + geom_point(size=3) + 
-    xlab(paste0("PC1: ",round(percentVar[1] * 100),"% variance")) +
-      ylab(paste0("PC2: ",round(percentVar[2] * 100),"% variance")) +
-        coord_fixed()
+#  ggplot(data=d, aes_string(x="PC1", y="PC2", color="group")) + geom_point(size=3) + 
+#    xlab(paste0("PC1: ",round(percentVar[1] * 100),"% variance")) +
+#      ylab(paste0("PC2: ",round(percentVar[2] * 100),"% variance")) +
+#        coord_fixed()
+  warning("Sorry plotting is not yet supported by Renjin. plotPCA.DESeqTransform() not executed.")
+
 }
 
 #' Sample PCA plot for transformed data
