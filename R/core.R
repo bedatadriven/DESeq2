@@ -1798,6 +1798,13 @@ replaceOutliersWithTrimmedMean <- replaceOutliers
 # unexported functons 
 ###########################################################
 
+rowVars2 <- function (x, ...) {
+    sqr = function(x) x * x
+    n = rowSums(!is.na(x))
+    n[n <= 1] = NA
+    return(rowSums(sqr(x - rowMeans(x, ...)), ...)/(n - 1))
+}
+
 
 # Get base means and variances
 #
@@ -1812,7 +1819,7 @@ replaceOutliersWithTrimmedMean <- replaceOutliers
 # and baseVar in the row metadata columns
 getBaseMeansAndVariances <- function(object) {
   meanVarZero <- DataFrame(baseMean = unname(rowMeans(counts(object,normalized=TRUE))),
-                           baseVar = unname(rowVars(counts(object,normalized=TRUE))),
+                           baseVar = unname(rowVars2(counts(object,normalized=TRUE))),
                            allZero = unname(rowSums(counts(object)) == 0))
   mcols(meanVarZero) <- DataFrame(type = rep("intermediate",ncol(meanVarZero)),
                                   description = c("mean of normalized counts for all samples",
