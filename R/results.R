@@ -553,6 +553,25 @@ removeResults <- function(object) {
 # unexported functons 
 ###########################################################
 
+filtered_p2 <- function (filter, test, theta, data, method = "none") {
+    if (is.function(filter)) 
+        U1 <- filter(data)
+    else U1 <- filter
+    cutoffs <- quantile(U1, theta)
+    result <- matrix(NA_real_, length(U1), length(cutoffs))
+    colnames(result) <- names(cutoffs)
+    for (i in 1:length(cutoffs)) {
+        use <- U1 >= cutoffs[i]
+        if (any(use)) {
+            if (is.function(test)) 
+                U2 <- test(data[use, ])
+            else U2 <- test[use]
+            result[use, i] <- p.adjust(U2, method)
+        }
+    }
+    return(result)
+}
+
 pvalueAdjustment <- function(res, independentFiltering, filter,
                              theta, alpha, pAdjustMethod) {
   # perform independent filtering
@@ -569,7 +588,7 @@ pvalueAdjustment <- function(res, independentFiltering, filter,
     # do filtering using genefilter
     stopifnot(length(theta) > 1)
     stopifnot(length(filter) == nrow(res))
-    filtPadj <- filtered_p(filter=filter, test=res$pvalue,
+    filtPadj <- filtered_p2(filter=filter, test=res$pvalue,
                            theta=theta, method=pAdjustMethod) 
     numRej  <- colSums(filtPadj < alpha, na.rm = TRUE)
     # prevent over-aggressive filtering when all genes are null,
