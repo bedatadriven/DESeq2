@@ -237,7 +237,7 @@ DESeq <- function(object, test=c("Wald","LRT"),
                   fitType=c("parametric","local","mean"), betaPrior,
                   full=design(object), reduced, quiet=FALSE,
                   minReplicatesForReplace=7, modelMatrixType,
-                  parallel=FALSE, BPPARAM=bpparam()) {
+                  parallel=FALSE, BPPARAM=FALSE) {
   # check arguments
   stopifnot(is(object, "DESeqDataSet"))
   test <- match.arg(test, choices=c("Wald","LRT"))
@@ -335,11 +335,23 @@ DESeq <- function(object, test=c("Wald","LRT"),
                           betaPrior=betaPrior, quiet=quiet)
     }
   } else if (parallel) {
-    object <- DESeqParallel(object, test=test, fitType=fitType,
-                            betaPrior=betaPrior, full=full, reduced=reduced,
-                            quiet=quiet, modelMatrix=modelMatrix,
-                            modelMatrixType=modelMatrixType,
-                            BPPARAM=BPPARAM)
+    #object <- DESeqParallel(object, test=test, fitType=fitType,
+    #                        betaPrior=betaPrior, full=full, reduced=reduced,
+    #                        quiet=quiet, modelMatrix=modelMatrix,
+    #                        modelMatrixType=modelMatrixType,
+    #                        BPPARAM=BPPARAM)
+    warning("Sorry, package BiocParallel is not yet supported by Renjin. Parallel option ignored.")
+    if (!quiet) message("estimating dispersions")
+    object <- estimateDispersions(object, fitType=fitType, quiet=quiet, modelMatrix=modelMatrix)
+    if (!quiet) message("fitting model and testing")
+    if (test == "Wald") {
+      object <- nbinomWaldTest(object, betaPrior=betaPrior, quiet=quiet,
+                               modelMatrix=modelMatrix,
+                               modelMatrixType=modelMatrixType)
+    } else if (test == "LRT") {
+      object <- nbinomLRT(object, full=full, reduced=reduced,
+                          betaPrior=betaPrior, quiet=quiet)
+    }
   }
 
   # if there are sufficient replicates, then pass through to refitting function
