@@ -38,27 +38,27 @@
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>methods</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>parallel</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>datasets</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>stats</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>splines</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     
 
@@ -114,42 +114,42 @@
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>grDevices</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>tcltk</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>stats4</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>tools</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>utils</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>grid</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>graphics</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
     </dependency>
     <dependency>
       <groupId>org.renjin</groupId>
       <artifactId>compiler</artifactId>
-      <version>0.8.2330</version>
+      <version>0.8.2340</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -170,7 +170,7 @@
       <plugin>
         <groupId>org.renjin</groupId>
         <artifactId>renjin-maven-plugin</artifactId>
-        <version>0.8.2330</version>
+        <version>0.8.2340</version>
         <executions>
           <execution>
             <id>compile</id>
