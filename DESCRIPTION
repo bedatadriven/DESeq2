@@ -16,12 +16,9 @@ Imports:
     BiocGenerics (>= 0.7.5),
     Biobase,
     BiocParallel,
-    genefilter,
     methods,
     locfit,
-    geneplotter,
     ggplot2,
-    Hmisc,
     Rcpp (>= 0.11.0)
 Depends:
     S4Vectors (>= 0.9.25),
