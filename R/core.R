@@ -322,7 +322,7 @@ DESeq <- function(object, test=c("Wald","LRT"),
     object <- estimateSizeFactors(object)
   }
   
-  if (!parallel) {
+  # if (!parallel) {
     if (!quiet) message("estimating dispersions")
     object <- estimateDispersions(object, fitType=fitType, quiet=quiet, modelMatrix=modelMatrix)
     if (!quiet) message("fitting model and testing")
@@ -334,13 +334,13 @@ DESeq <- function(object, test=c("Wald","LRT"),
       object <- nbinomLRT(object, full=full, reduced=reduced,
                           betaPrior=betaPrior, quiet=quiet)
     }
-  } else if (parallel) {
-    object <- DESeqParallel(object, test=test, fitType=fitType,
-                            betaPrior=betaPrior, full=full, reduced=reduced,
-                            quiet=quiet, modelMatrix=modelMatrix,
-                            modelMatrixType=modelMatrixType,
-                            BPPARAM=BPPARAM)
-  }
+  # } else if (parallel) {
+  #   object <- DESeqParallel(object, test=test, fitType=fitType,
+  #                           betaPrior=betaPrior, full=full, reduced=reduced,
+  #                           quiet=quiet, modelMatrix=modelMatrix,
+  #                           modelMatrixType=modelMatrixType,
+  #                           BPPARAM=BPPARAM)
+  # }
 
   # if there are sufficient replicates, then pass through to refitting function
   sufficientReps <- any(nOrMoreInCell(attr(object,"modelMatrix"),minReplicatesForReplace))
