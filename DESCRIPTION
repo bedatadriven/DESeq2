@@ -15,7 +15,6 @@ VignetteBuilder: knitr
 Imports:
     BiocGenerics (>= 0.7.5),
     Biobase,
-    BiocParallel,
     methods,
     locfit,
     ggplot2,

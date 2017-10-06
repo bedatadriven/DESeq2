@@ -385,16 +385,16 @@ of length 3 to 'contrast' instead of using 'name'")
     # need to go back to C++ code in order to build the beta covariance matrix
     # then this is multiplied by the numeric contrast to get the Wald statistic.
     # with 100s of samples, this can get slow, so offer parallelization
-    res <- if (!parallel) {
+    # res <- if (!parallel) {
       cleanContrast(object, contrast, expanded=isExpanded, listValues=listValues, test=test)
-    } else if (parallel) {
-      nworkers <- BPPARAM$workers
-      idx <- factor(sort(rep(seq_len(nworkers),length=nrow(object))))
-      do.call(rbind, bplapply(levels(idx), function(l) {
-        cleanContrast(object[idx == l,,drop=FALSE], contrast,
-                      expanded=isExpanded, listValues=listValues, test=test)
-      }, BPPARAM=BPPARAM))
-    }
+    # } else if (parallel) {
+    #   nworkers <- BPPARAM$workers
+    #   idx <- factor(sort(rep(seq_len(nworkers),length=nrow(object))))
+    #   do.call(rbind, bplapply(levels(idx), function(l) {
+    #     cleanContrast(object[idx == l,,drop=FALSE], contrast,
+    #                   expanded=isExpanded, listValues=listValues, test=test)
+    #   }, BPPARAM=BPPARAM))
+    # }
 
   } else {
     # if not performing a contrast

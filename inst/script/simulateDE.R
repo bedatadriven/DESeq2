@@ -24,8 +24,8 @@ nreps <- 6
 effSizes <- rep(rep(effSizeLevels, each=nreps), times=length(mLevels))
 ms <- rep(mLevels, each=nreps * length(effSizeLevels))
 
-library("parallel")
-options(mc.cores=20)
+# library("parallel")
+# options(mc.cores=20)
 
 resList <- mclapply(seq_along(ms), function(i) {
   set.seed(i)
